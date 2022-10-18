@@ -1,1 +1,3 @@
 # homework13
+简单实现样式隔离，在index.html中已经设置了全局样式span标签的文字颜色是红色
+需求：在不使用css in js的情况，通过引入style.css文件的形式把第二个span标签中的文字颜色改为绿色
