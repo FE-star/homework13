@@ -1,3 +1,3 @@
 # homework13
-简单实现样式隔离，在index.html中已经设置了全局样式span标签的文字颜色是红色
-需求：在不使用css in js的情况，通过引入style.css文件的形式把第二个span标签中的文字颜色改为绿色
+* 实现一个简单的自定义renderer。补全mini-renderer.js中的todo部分
+* 相关资料：https://github.com/vuejs/core
