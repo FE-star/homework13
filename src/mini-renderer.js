@@ -66,7 +66,15 @@ const render = createRenderer({
 })
 
 const createApp = (...args) => {
-  //TODO
+  const root = args[0]
+  return {
+    mount(selector) {
+      const app = render.createApp(root)
+      const target = document.querySelector(selector)
+      console.log(app, target)
+      app.mount(target)
+    },
+  }
 }
 
 export {
