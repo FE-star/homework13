@@ -71,7 +71,6 @@ const createApp = (...args) => {
     mount(selector) {
       const app = render.createApp(root)
       const target = document.querySelector(selector)
-      console.log(app, target)
       app.mount(target)
     },
   }
