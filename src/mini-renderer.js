@@ -65,8 +65,29 @@ const render = createRenderer({
   }
 })
 
+const normalizeContainer = (container) => {
+  if (typeof container === 'string') {
+    return document.querySelector(selector)
+  }
+  
+  return container
+}
+
 const createApp = (...args) => {
   //TODO
+  const app = render.createApp(...args)
+  const { mount } = app
+
+  app.mount = (containerOrSelector) => {
+    const container = normalizeContainer(containerOrSelector)
+    container.innerHTML = ''
+    const proxy = mount(container)
+
+    return proxy
+  }
+  console.log(app);
+
+  return app
 }
 
 export {
