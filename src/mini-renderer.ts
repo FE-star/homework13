@@ -4,7 +4,7 @@ import {
   ConcreteComponent,
   createVNode,
   AppContext,
-} from '@vue/runtime-core'
+} from '@vue/runtime-core';
 
 
 const render = createRenderer({
