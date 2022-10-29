@@ -26,4 +26,4 @@ coverage
 *.njsproj
 *.sln
 *.sw?
-mini-renderer2.js
+src/mini-renderer.js

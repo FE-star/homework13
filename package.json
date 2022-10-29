@@ -5,7 +5,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview --port 4173",
-    "test": "vitest --environment jsdom"
+    "test": "vitest --environment jsdom",
+    "tsc":"tsc src/mini-renderer.ts --target esnext"
   },
   "dependencies": {
     "vue": "^3.2.38"
