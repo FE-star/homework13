@@ -66,7 +66,17 @@ const render = createRenderer({
 })
 
 const createApp = (...args) => {
-  //TODO
+  // console.log(args);
+  // return render.createApp(args[0])
+  const template = args[0]
+  return {
+    mount(selector) {
+      const app = render.createApp(template)
+      const target = typeof selector === 'string' ? document.querySelector(selector) : selector
+      // const target = selector
+      app.mount(target)
+    }
+  }
 }
 
 export {
