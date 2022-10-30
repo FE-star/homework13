@@ -66,9 +66,16 @@ const render = createRenderer({
 })
 
 const createApp = (...args) => {
-  //TODO
-}
+  const app = render.createApp(...args);
 
-export {
-  createApp
-}
+  const mount = (selector) =>
+    app.mount(
+      typeof selector === "string" ? document.querySelector(selector) : selector
+    );
+
+  return {
+    mount
+  };
+};
+
+export { createApp };
