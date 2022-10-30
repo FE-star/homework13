@@ -1,8 +1,8 @@
-import { createRenderer } from '@vue/runtime-core'
+import { createRenderer } from "@vue/runtime-core";
 
 const render = createRenderer({
-  forcePatchProp(el, key){
-    return false
+  forcePatchProp(el, key) {
+    return false;
   },
   patchProp(
     el,
@@ -14,61 +14,68 @@ const render = createRenderer({
     parentComponent,
     parentSuspense,
     unmountChildren
-  ){
-    if(key.startsWith('on')) {
-      el.addEventListener(key.substr(2).toLowerCase(), nextValue)
+  ) {
+    if (key.startsWith("on")) {
+      el.addEventListener(key.substr(2).toLowerCase(), nextValue);
     } else {
-      el.setAttribute(key, nextValue)
+      el.setAttribute(key, nextValue);
     }
   },
-  insert(child, parent, anchor){
-    parent.insertBefore(child, anchor || null)
+  insert(child, parent, anchor) {
+    parent.insertBefore(child, anchor || null);
   },
-  remove(child){
-    const parent = child.parentNode
-    if(parent) {
-      parent.removeNode(child)
+  remove(child) {
+    const parent = child.parentNode;
+    if (parent) {
+      parent.removeNode(child);
     }
   },
-  createElement(type, isSvg, isCustomizedBuiltIn){
-    return document.createElement(type)
+  createElement(type, isSvg, isCustomizedBuiltIn) {
+    return document.createElement(type);
   },
-  createText(text){
-    return document.createTextNode(text)
+  createText(text) {
+    return document.createTextNode(text);
   },
-  createComment(text){
-    return document.createComment(text)
+  createComment(text) {
+    return document.createComment(text);
   },
-  setText(node, text){
-    node.nodeValue = text
+  setText(node, text) {
+    node.nodeValue = text;
   },
-  setElementText(el, text){
-    el.textContent = text
+  setElementText(el, text) {
+    el.textContent = text;
   },
-  parentNode(node){
-    return node.parentNode
+  parentNode(node) {
+    return node.parentNode;
   },
-  nextSibling(node){
-    return node.nextSibling
+  nextSibling(node) {
+    return node.nextSibling;
   },
-  querySelector(selector){
-    return document.querySelector(selector)
+  querySelector(selector) {
+    return document.querySelector(selector);
   },
-  setScopeId(el, id){
-    el.setAttribute(id, '')
+  setScopeId(el, id) {
+    el.setAttribute(id, "");
   },
-  cloneNode(el){
-    return el.cloneNode(true)
+  cloneNode(el) {
+    return el.cloneNode(true);
   },
-  insertStaticContent(){
-    return []
+  insertStaticContent() {
+    return [];
   }
-})
+});
 
 const createApp = (...args) => {
-  //TODO
-}
+  const app = render.createApp(...args);
 
-export {
-  createApp
-}
+  const mount = (selector) =>
+    app.mount(
+      typeof selector === "string" ? document.querySelector(selector) : selector
+    );
+
+  return {
+    mount
+  };
+};
+
+export { createApp };
