@@ -1,4 +1,4 @@
-import { createRenderer } from '@vue/runtime-core'
+import { createRenderer, createVNode } from '@vue/runtime-core'
 
 const render = createRenderer({
   forcePatchProp(el, key){
@@ -66,7 +66,24 @@ const render = createRenderer({
 })
 
 const createApp = (...args) => {
-  //TODO
+  const app = {
+    _component: { ...args[0] },
+    mount: (domContainer) => {
+      let container =
+          typeof domContainer === 'string'
+              ? document.querySelector(domContainer)
+              : domContainer;
+
+      if (container instanceof HTMLDivElement) {
+        let vnode = createVNode(args);
+        render.render(vnode, container);
+      } else {
+        console.error('Container is a HTMLDivElement')
+      }
+    }
+  };
+
+  return app;
 }
 
 export {
