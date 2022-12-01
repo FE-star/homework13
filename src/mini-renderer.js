@@ -66,7 +66,8 @@ const render = createRenderer({
 })
 
 const createApp = (...args) => {
-  //TODO
+  const app = render.createApp(...args)
+  return app
 }
 
 export {
