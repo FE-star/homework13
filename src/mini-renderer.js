@@ -66,7 +66,33 @@ const render = createRenderer({
 })
 
 const createApp = (...args) => {
-  //TODO
+  // const App ={
+  //   mount(element){
+  //     const page = args[0]
+  //     const root = document.getElementById(element)
+  //     const appRender = render.render(null, new RendererElement(root))
+  //     appRender.render(page)
+  //   }
+  // }
+
+  const app = render.createApp(...args)
+  console.log('app=', app)
+  const { mount } = app
+
+  app.mount = (element) => {
+    let container  
+    if (typeof element === 'string')  
+      container = document.querySelector(element)
+    else
+      container = element
+
+    container.innerHTML = ''
+    const proxy = mount(container, false, false)
+
+    return proxy
+  }
+
+  return app;
 }
 
 export {
